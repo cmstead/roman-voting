@@ -1,8 +1,26 @@
 (function () {
+    var firebaseConfig = {
+        apiKey: "AIzaSyDd1Y2l-4SsmJthFhvJFAptABJ8rTvmWAY",
+        authDomain: "roman-voting.firebaseapp.com",
+        databaseURL: "https://roman-voting.firebaseio.com",
+        projectId: "roman-voting",
+        storageBucket: "roman-voting.appspot.com",
+        messagingSenderId: "667347198785",
+        appId: "1:667347198785:web:db954985b3f892934c77c0"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
     const voteTypes = {
         THUMBS_UP: 'thumbsUp',
         THUMBS_SIDEWAYS: 'thumbsSideways',
         THUMBS_DOWN: 'thumbsDown',
+    };
+
+    function DataStore() { }
+
+    DataStore.prototype = {
+
     };
 
     function AppState() {
@@ -16,7 +34,7 @@
     }
 
     AppState.prototype = {
-        reset: function() {
+        reset: function () {
             Object.keys(this.voteCount)
                 .forEach((key) => {
                     this.voteCount[key] = 0;
@@ -27,7 +45,7 @@
             this.sessionId = sessionId;
         },
 
-        incrementVoteCount: function(voteType) {
+        incrementVoteCount: function (voteType) {
             this.voteCount[voteType]++;
         },
 
@@ -71,17 +89,17 @@
     }
 
     App.prototype = {
-        initializeSessionId: function() {
+        initializeSessionId: function () {
             const sessionId = this.getSessionId();
-            this.setSessionId(sessionId);    
+            this.setSessionId(sessionId);
         },
 
-        setSessionId: function(sessionId) {
+        setSessionId: function (sessionId) {
             this.appState.setSessionId(sessionId);
             this.view.updateMainView();
         },
 
-        resetAppState: function() {
+        resetAppState: function () {
             this.aPopStateEvent.reset();
             this.view.updateMainView();
         },
