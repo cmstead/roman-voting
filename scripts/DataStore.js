@@ -11,18 +11,23 @@ const DataStore = (function () {
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
 
+    const db = firebase.firestore();
+
     function DataStore() {
         this.unsubscribe = null;
+        this.connection = db.collection('roman-voting')
+            .doc('voting');
+
+        console.log(this.connection.where);
     }
 
     DataStore.prototype = {
         subscribe: function(id) {
             if(typeof this.unsubscribe !== 'function') {
                 this.unsubscribe();
-                this.unsubscribe = null;
             }
 
-            const ref = firebase.ref('/roman-voting/votes/' + id);
+            
         },
     };
 
