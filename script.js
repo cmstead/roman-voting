@@ -17,8 +17,12 @@ AppState.prototype = {
 
     sessionIdExists: function() {
         return this.sessionId !== '';
-    }
+    },
+
+    
 };
+
+function DisplayManager(state) {}
 
 const optionIds = Object.freeze({
     VOTING_SESSION: 'voting-session',
@@ -28,6 +32,6 @@ const optionIds = Object.freeze({
 $(document).ready(function () {
     const appState = new AppState();
     const displayedBehavior = optionIds.NEW_SESSION;
-    const displayedBehavior = optionIds.NEW_SESSION;
+    const hiddenBehavior = optionIds.VOTING_SESSION;
 
 });
