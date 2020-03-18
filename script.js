@@ -16,6 +16,13 @@
     }
 
     AppState.prototype = {
+        reset: function() {
+            Object.keys(this.voteCount)
+                .forEach((key) => {
+                    this.voteCount[key] = 0;
+                });
+        },
+
         setSessionId: function (sessionId) {
             this.sessionId = sessionId;
         },
@@ -37,7 +44,7 @@
             'new-session': (state) => !state.sessionIdExists()
         };
 
-        this.update();
+        this.updateMainView();
     }
 
     ViewManager.prototype = {
@@ -60,13 +67,22 @@
         this.appState = appState;
         this.view = view;
 
-        const sessionId = this.getSessionId();
-        this.setSessionId(sessionId);
+        this.initializeSessionId();
     }
 
     App.prototype = {
+        initializeSessionId: function() {
+            const sessionId = this.getSessionId();
+            this.setSessionId(sessionId);    
+        },
+
         setSessionId: function(sessionId) {
             this.appState.setSessionId(sessionId);
+            this.view.updateMainView();
+        },
+
+        resetAppState: function() {
+            this.aPopStateEvent.reset();
             this.view.updateMainView();
         },
 
