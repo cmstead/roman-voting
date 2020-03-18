@@ -1,48 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Remotro - Roman Voting</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<head>
+  <title>Remotro - Roman Voting</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- import the webpage's stylesheet -->
-    <link rel="stylesheet" href="/style.css">
-    
-    <!-- import the webpage's javascript file -->
-  </head>  
-  <body>
-    <header class="container">
-      <h1>When in Rome...</h1>
-    </header>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
-    <div class="container">
-      <div id="new-session">
-        <button id="new-session-button">
-          Create New Session
-        </button>
-      </div>
-      <div id="voting-session">
-        <button id="thumbs-up">
-          <span id="thumbs-up-icon">👍</span>
-          <span id="thumbs-up-count">0</span>
-        </button>
-        <button id="thumbs-sideways">
-          <span id="thumbs-sideways-icon">🖖</span>
-          <span id="thumbs-sideways-count">0</span>
-        </button>
-        <button id="thumbs-down">
-          <span id="thumbs-down-icon">👎</span>
-          <span id="thumbs-down-count">0</span>
-        </button>
-      </div>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyDd1Y2l-4SsmJthFhvJFAptABJ8rTvmWAY",
+      authDomain: "roman-voting.firebaseapp.com",
+      databaseURL: "https://roman-voting.firebaseio.com",
+      projectId: "roman-voting",
+      storageBucket: "roman-voting.appspot.com",
+      messagingSenderId: "667347198785",
+      appId: "1:667347198785:web:db954985b3f892934c77c0"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+  </script>
+
+  <!-- import the webpage's stylesheet -->
+  <link rel="stylesheet" href="/style.css">
+
+  <!-- import the webpage's javascript file -->
+</head>
+
+<body>
+  <header class="container">
+    <h1>When in Rome...</h1>
+  </header>
+
+  <div class="container">
+    <div id="new-session">
+      <button id="new-session-button">
+        Create New Session
+      </button>
     </div>
+    <div id="voting-session">
+      <button id="thumbs-up">
+        <span id="thumbs-up-icon">👍</span>
+        <span id="thumbs-up-count">0</span>
+      </button>
+      <button id="thumbs-sideways">
+        <span id="thumbs-sideways-icon">🖖</span>
+        <span id="thumbs-sideways-count">0</span>
+      </button>
+      <button id="thumbs-down">
+        <span id="thumbs-down-icon">👎</span>
+        <span id="thumbs-down-count">0</span>
+      </button>
+    </div>
+  </div>
 
-    <script src="/script.js" defer></script>
-  </body>
+  <script src="/script.js" defer></script>
+</body>
+
 </html>
