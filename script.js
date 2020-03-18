@@ -1,37 +1,33 @@
-function getSessionId() {
-    return window.location.hash.trim().replace('#', '');
-}
+
 
 function AppState() {
     this.sessionId = this.getSessionId();
 }
 
 AppState.prototype = {
-    setSessionId: function() {}
+    getSessionId: function () {
+        return window.location.hash
+            .trim()
+            .replace('#', '');
+    },
+
+    setSessionId: function(sessionId) {
+        this.sessionId = sessionId;
+    },
+
+    sessionIdExists: function() {
+        return this.sessionId !== '';
+    }
 };
 
+const optionIds = Object.freeze({
+    VOTING_SESSION: 'voting-session',
+    NEW_SESSION: 'new-session'
+});
+
 $(document).ready(function () {
-    const id = getSessionId();
+    const appState = new AppState();
+    const displayedBehavior = optionIds.NEW_SESSION;
+    const displayedBehavior = optionIds.NEW_SESSION;
 
-    const optionKeys = {
-        VOTING_SESSION: 'voting-session',
-        NEW_SESSION: 'new-session'
-    };
-
-    function doesIdExist() {}
-
-    function displayOption(id) {
-        const optionToDisplay = id === ''
-            ? optionKeys.NEW_SESSION
-            : optionKeys.VOTING_SESSION;
-
-        const optionToHide = id !== ''
-            ? optionKeys.VOTING_SESSION
-            : optionKeys.NEW_SESSION;
-
-        $('#' + optionToDisplay).show();
-        $('#' + optionToHide).hide();
-    }
-
-    displayOption(id);
 });
