@@ -11,16 +11,19 @@ const DataStore = (function () {
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
 
-    const voteTypes = {
-        THUMBS_UP: 'thumbsUp',
-        THUMBS_SIDEWAYS: 'thumbsSideways',
-        THUMBS_DOWN: 'thumbsDown',
-    };
-
-    function DataStore() { }
+    function DataStore() {
+        this.unsubscribe = null;
+    }
 
     DataStore.prototype = {
+        subscribe: function(id) {
+            if(typeof this.unsubscribe !== 'function') {
+                this.unsubscribe();
+                this.unsubscribe = null;
+            }
 
+            const ref = firebase.ref('/roman-voting/votes/' + id);
+        },
     };
 
     return DataStore;

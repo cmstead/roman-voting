@@ -22,7 +22,7 @@
 
   <script>
     // Your web app's Firebase configuration
-    
+
   </script>
 
   <!-- import the webpage's stylesheet -->
@@ -58,8 +58,22 @@
     </div>
   </div>
 
+  <script src="/scripts/constants.js" defer></script>
+
+  <script src="/scripts/App.js" defer></script>
+  <script src="/scripts/AppState.js" defer></script>
   <script src="/scripts/DataStore.js" defer></script>
-  <script src="/scripts/script.js" defer></script>
+  <script src="/scripts/ViewManager.js" defer></script>
+
+  <script>
+    $(document).ready(function () {
+      const dataStore = new DataStore();
+      const appState = new AppState(dataStore);
+      const view = new ViewManager(appState);
+
+      new App(appState, view);
+    });
+  </script>
 </body>
 
 </html>
