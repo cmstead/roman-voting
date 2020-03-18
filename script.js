@@ -17,17 +17,21 @@ AppState.prototype = {
 
     sessionIdExists: function() {
         return this.sessionId !== '';
-    },
-
-    
+    }
 };
 
-function DisplayManager(state) {}
+function ViewManager(state) {
+    this.state = state;
+    
+    this.viewIdSelectors = {
+        'voting-session': (state) => state.sessionIdExists(),
+        'new-session': (state) => !state.sessionIdExists()
+    };
+}
 
-const optionIds = Object.freeze({
-    VOTING_SESSION: 'voting-session',
-    NEW_SESSION: 'new-session'
-});
+
+
+const optionIds = Object.freeze();
 
 $(document).ready(function () {
     const appState = new AppState();
