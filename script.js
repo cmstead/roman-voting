@@ -22,20 +22,32 @@ AppState.prototype = {
 
 function ViewManager(state) {
     this.state = state;
-    
+
     this.viewIdSelectors = {
         'voting-session': (state) => state.sessionIdExists(),
         'new-session': (state) => !state.sessionIdExists()
     };
+
+    this.update();
 }
 
+ViewManager.prototype = {
+    update: function() {
+        Object.keys(this.viewIdSelectors)
+            .forEach(selector => {
+                const displayPredicate = this.viewIdSelectors[selector];
+                const element = $('#' + selector);
 
-
-const optionIds = Object.freeze();
+                if(displayPredicate(this.state)) {
+                    element.show();
+                } else {
+                    element.hide();
+                }
+            })
+    }
+};
 
 $(document).ready(function () {
     const appState = new AppState();
-    const displayedBehavior = optionIds.NEW_SESSION;
-    const hiddenBehavior = optionIds.VOTING_SESSION;
-
+    const view = new ViewManager(appState);
 });
