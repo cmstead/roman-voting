@@ -18,7 +18,12 @@ const DataStore = (function () {
         this.connection = db.collection('roman-voting')
             .doc('voting');
 
-        console.log(this.connection.where);
+        this.connection.set({
+            test: 'foo'
+        })
+        .then(function(docRef) {
+            console.log(docRef);
+        });
     }
 
     DataStore.prototype = {
