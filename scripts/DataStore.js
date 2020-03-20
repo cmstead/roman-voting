@@ -23,6 +23,9 @@ const DataStore = (function () {
         })
         .then(function(docRef) {
             console.log(docRef);
+        })
+        .catch(function(error) {
+            console.log(error);
         });
     }
 

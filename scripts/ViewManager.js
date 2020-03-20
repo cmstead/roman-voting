@@ -1,7 +1,7 @@
 const ViewManager = (function () {
     function ViewManager(state) {
         this.state = state;
-        this.newSessionUnsubscribe = null;
+        this.newSessionClickSet = false;
 
         this.viewIdSelectors = {
             'voting-session': (state) => state.sessionIdExists(),
@@ -29,11 +29,14 @@ const ViewManager = (function () {
         },
 
         setNewSessionClickEvent: function () {
-            if (!this.state.sessionIdExists() && !this.newSessionUnsubscribe) {
-                this.newSessionUnsubscribe = $('#new-session-button')
+            if (!this.state.sessionIdExists() && !this.newSessionClickSet) {
+                this.newSessionClickSet = true;
+
+                $('#new-session-button')
                     .on('click', () => {
                         console.log('clicked');
-                        this.newSessionUnsubscribe();
+                        $('#new-session-button').off('click');
+                        this.newSessionClickSet = false;
                     });
             }
         }
