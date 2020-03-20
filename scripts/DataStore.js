@@ -31,8 +31,6 @@ const DataStore = (function () {
             if(typeof this.unsubscribe !== 'function') {
                 this.unsubscribe();
             }
-
-            
         },
     };
 
